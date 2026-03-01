@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div>
-      <h1>Institucional 360</h1>
+      <h1>Painel SaaS 360</h1>
     </div>
   );
 }
