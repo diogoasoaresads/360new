@@ -1,24 +1,12 @@
-import { auth } from "./auth";
+// Middleware temporariamente simplificado para permitir acesso sem auth
+// O auth será reativado quando os providers forem configurados
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
-export default auth((req) => {
-    const isLoggedIn = !!req.auth;
-    const isApiAuthRoute = req.nextUrl.pathname.startsWith("/api/auth");
-    const isLoginRoute = req.nextUrl.pathname === "/login";
-
-    if (isApiAuthRoute) return;
-
-    if (!isLoggedIn && !isLoginRoute) {
-        return NextResponse.redirect(new URL("/login", req.nextUrl));
-    }
-
-    if (isLoggedIn && isLoginRoute) {
-        return NextResponse.redirect(new URL("/", req.nextUrl));
-    }
-
-    // TODO: Add Tenant Validation logic here using the req.auth and requested slug.
+export function middleware(req: NextRequest) {
+    // Permitir todas as rotas por agora (sem auth ativo)
     return NextResponse.next();
-});
+}
 
 export const config = {
     matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],

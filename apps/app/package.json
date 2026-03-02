@@ -11,7 +11,9 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@repo/db": "workspace:*",
     "@repo/ui": "workspace:*",
+    "drizzle-orm": "^0.45.1",
     "next": "16.1.5",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

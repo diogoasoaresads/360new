@@ -1,7 +1,6 @@
-export default function Home() {
-  return (
-    <div>
-      <h1>Painel SaaS 360</h1>
-    </div>
-  );
+import { redirect } from "next/navigation";
+
+export default function AppHomePage() {
+  // Redireciona para a página de seleção de organização
+  redirect("/orgs");
 }
