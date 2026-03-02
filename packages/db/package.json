@@ -15,9 +15,9 @@
         "typecheck": "tsc --noEmit"
     },
     "dependencies": {
-        "@auth/drizzle-adapter": "workspace:*",
-        "drizzle-orm": "workspace:*",
-        "postgres": "workspace:*"
+        "@auth/drizzle-adapter": "^1.11.1",
+        "drizzle-orm": "^0.45.1",
+        "postgres": "^3.4.8"
     },
     "devDependencies": {
         "@repo/eslint-config": "workspace:*",
@@ -26,6 +26,6 @@
         "dotenv": "^16.4.5",
         "drizzle-kit": "^0.31.9",
         "tsx": "^4.7.1",
-        "typescript": "workspace:*"
+        "typescript": "^5.9.2"
     }
 }
