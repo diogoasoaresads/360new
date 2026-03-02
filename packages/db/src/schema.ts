@@ -90,3 +90,45 @@ export const memberships = pgTable(
         compoundKey: primaryKey({ columns: [table.userId, table.orgId] }),
     })
 );
+
+// --- CRM MODULE ---
+
+export const pipelines = pgTable("pipeline", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    orgId: text("orgId")
+        .notNull()
+        .references(() => organizations.id, { onDelete: "cascade" }),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export const dealStages = pgTable("deal_stage", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    pipelineId: text("pipelineId")
+        .notNull()
+        .references(() => pipelines.id, { onDelete: "cascade" }),
+    color: text("color").default("#6c5ce7"),
+    order: integer("order").notNull().default(0),
+});
+
+export const deals = pgTable("deal", {
+    id: text("id")
+        .primaryKey()
+        .$defaultFn(() => crypto.randomUUID()),
+    name: text("name").notNull(),
+    amount: integer("amount").default(0), // em centavos
+    stageId: text("stageId")
+        .notNull()
+        .references(() => dealStages.id, { onDelete: "cascade" }),
+    orgId: text("orgId")
+        .notNull()
+        .references(() => organizations.id, { onDelete: "cascade" }),
+    contactName: text("contactName"),
+    contactEmail: text("contactEmail"),
+    createdAt: timestamp("createdAt").defaultNow().notNull(),
+});

@@ -32,6 +32,9 @@ export default async function TenantLayout({
                     <div className="sidebar-section-title">Principal</div>
                     <Link href={`/${orgSlug}`}>📊 Dashboard</Link>
                     <Link href={`/${orgSlug}/members`}>👥 Membros</Link>
+                    {org.type !== "PO" && (
+                        <Link href={`/${orgSlug}/crm`}>🚀 CRM</Link>
+                    )}
 
                     {org.type === "AGENCY" && (
                         <>
